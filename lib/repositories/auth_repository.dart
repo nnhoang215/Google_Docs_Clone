@@ -14,7 +14,7 @@ class AuthRepository with RepositoryExceptionMixin {
 
   static Provider<AuthRepository> get provider => _authRepositoryProvider;
 
-  final Reader _reader;
+  final Reader _reader; /// A function that reads the state of a provider.
 
   Account get _account => _reader(Dependency.account);
 
@@ -25,7 +25,7 @@ class AuthRepository with RepositoryExceptionMixin {
   }) {
     return exceptionHandler(
       _account.create(
-        userId: 'unique()',
+        userId: 'unique()', // appwrite generates a unique uid for you
         email: email,
         password: password,
         name: name,
